@@ -1,35 +1,53 @@
-# Venom Profile
+# 🚀 Cloudflare Deploy Guide
+### Venom Profile · 3 Easy Steps
 
-Personal profile website for Venom / Krishna.
+---
 
-## Deploy to Cloudflare Workers
+## ① Build command
+*Builds your website*
 
-From the repository root, install dependencies:
-
-```sh
-pnpm install
+```
+pnpm --filter @workspace/venom-profile run build:cloudflare
 ```
 
-On the first deploy, sign in to your Cloudflare account:
+---
 
-```sh
-pnpm --filter @workspace/venom-profile exec wrangler login
+## ② Deploy command
+*Publishes your website live on the internet*
+
+```
+cd artifacts/venom-profile && npx wrangler deploy
 ```
 
-Build and deploy the site:
+---
 
-```sh
-pnpm --filter @workspace/venom-profile run deploy:cloudflare
+## ③ Preview command
+*Only used for testing, but it must be filled in*
+
+```
+cd artifacts/venom-profile && npx wrangler versions upload
 ```
 
-Wrangler prints the live Worker URL after a successful deployment.
+---
 
-### Deployment links
+## ✅ Checklist
 
-- [Cloudflare Dashboard](https://dash.cloudflare.com/)
-- [Project deployment instructions](artifacts/venom-profile/CLOUDFLARE.md)
-- [GitHub repository](https://github.com/KIRU-OP/venom-profile)
+- [ ] Root `package.json` has `"packageManager": "pnpm@10.18.0"`
+- [ ] Cloudflare Variables has `PNPM_VERSION = 10.18.0`
+- [ ] All three commands are pasted in their own fields
+- [ ] The red "Required" label has disappeared
+- [ ] You have tapped the blue **Deploy** button
 
-**Live website:** Not deployed yet. Add the `workers.dev` URL printed by Wrangler here after the first deployment.
+---
 
-> Cloudflare Deploy buttons require a public repository. This repository is private, so deploy it using the Wrangler commands above.
+## 🌐 Your link after deploying
+
+```
+https://venom-profile.your-subdomain.workers.dev
+```
+
+It appears at the end of the build log, or in Cloudflare under **Workers & Pages → venom-profile → Visit**.
+
+---
+
+If the build fails, paste the full log here and I'll tell you what to fix.

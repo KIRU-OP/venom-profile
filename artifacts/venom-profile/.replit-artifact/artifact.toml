@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Venom Profile"
+description = "A dark, animated personal profile page for Venom, using the supplied anime portrait and biography, with a Cloudflare Workers deployment target."
+version = "1.0.0"
+id = "artifacts/venom-profile"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20317
+
+[services.development]
+run = "pnpm --filter @workspace/venom-profile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/venom-profile", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/venom-profile/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20317"
+BASE_PATH = "/"

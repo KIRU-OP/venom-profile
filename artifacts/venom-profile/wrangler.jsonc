@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "venom-profile",
+  "main": "./worker/index.js",
+  "compatibility_date": "2026-10-17",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./dist/public",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  }
+}
